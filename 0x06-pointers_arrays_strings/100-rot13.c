@@ -1,23 +1,29 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * main - entry line
- * @void: no argument
- * Return: alway 0
+ * rot13 - encodes a string in rot13
+ * @s: string to be encoded
+ *
+ * Return: the resulting string
  */
-int main(void)
+char *rot13(char *s)
 {
-	long int i, n;
+	int i, j;
 
-	i = 612852475143;
-	for (n = 2; n <= i; n++)
+	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (i % n == 0)
+		for (j = 0; a[j] != '\0'; j++)
 		{
-			i = i / n;
-			n--;
+			if (s[i] == a[j])
+			{
+				s[i] = b[j];
+				break;
+			}
 		}
 	}
-	printf("%lu\n", n);
-	return (0);
+
+	return (s);
 }
